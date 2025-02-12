@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="This is a business directory" />
+    <meta name="keywords" content="business, directory, amc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <title>{% block title %}Welcome to My Website{% endblock %}</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="wrapper">
+      <header id="header">
+        <img id="logo" src="{{ url_for('static', filename='images/new_logo.PNG') }}" alt="Logo" />
+        <h1>Ferrari Car Deliveries</h1>
+        <nav id="horizontal">
+          <a href="#sportscars">SPORTS CARS</a> |
+          <a href="#about">About</a> |
+          <a href="#experiences">Experiences</a> |
+          <a href="#contact">Contact Us</a>
+        </nav>
+      </header>
+
+      <main id="main">
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer id="footer">
+        <p>Contact Us @<address>info@ferrarideliveries.com | 670337467</address></p>
+        <p>&copy; 2025 Ferrari Car Deliveries</p>
+      </footer>
+    </div>
+  </body>
+</html>

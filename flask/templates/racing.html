@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Racing Cars{% endblock %} {% block
+content %}
+<h2>Explore Our Incredible Racing Cars</h2>
+<p>
+  Ferrari racing cars have set benchmarks on tracks worldwide, combining speed,
+  innovation, and unmatched design.
+</p>
+
+<div id="racing-cars">
+  {% for car in cars %}
+  <div class="car">
+    <img
+      src="{{ url_for('static', filename=car.image) }}"
+      alt="{{ car.name }}"
+    />
+    <h3>{{ car.name }}</h3>
+    <p>{{ car.description }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

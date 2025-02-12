@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="This is a business directory" />
+    <meta name="keywords" content="business, directory, amc" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1, minimum-scale =1"/>
+    <title>Welcome to My Website</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <header id="header">       
+            <img id="logo" src="{{ url_for('static', filename='images/new_logo.PNG') }}" alt="Logo" />
+            <h1>Ferrari Car Deliveries</h1>
+            <nav id="horizontal">
+                <a href="racing.html">SPORTS CARS</a> |
+                <a href="#about">About</a> |
+                <a href="experiences">Experiences</a> |
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </header>
+
+        <main id="main">
+            <aside id="content">
+                <h1 class="alert">Showcase Your Business to the World</h1>
+
+                
+                <h2>Upload a New Listing</h2>
+                <form action="{{ url_for('upload_listing') }}", method="post" enctype="multipart/form-data">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" required><br><br>
+
+                    <label for="description">Description:</label>
+                    <textarea name ="description"></textarea><br><br>
+
+                    <label for="image">Upload Image:</label>
+                    <input type="file" name="image" accept="image/*" required><br><br>
+
+                    <button type="submit">Upload Listing</button>
+                </form>
+
+                <h2>Existing Listings</h2>
+                <div id="listings">
+                    {% for listing in listings %}
+                        <div class="listing">
+                            <h3>{{ listing.title }}</h3>
+                                <p>{{ listing.description }}</p>
+                            <img src="{{ listing.cover_image }}" alt="{{ listing.title }}" width="200">
+                        </div>
+                    {% endfor %}
+                </div>
+            </aside>
+
+            <aside id="actions">
+                <div id="login-form">
+                    <h2>Login</h2>
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" placeholder="Enter your Username">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                    <button id="login-btn">LOGIN</button>
+                </div>
+
+                <div id="register-form">
+                    <h2>Register</h2>
+                    <label for="register-username">Username: </label>
+                    <input type="text" id="register-username" placeholder="Username" />
+                    <label for="register-pwd">Enter your Password</label>
+                    <input type="password" id="register-pwd" placeholder="Enter your Password" />
+                    <label for="register-email">Email : </label>
+                    <input type="email" id="register-email" placeholder="Email" />
+                    <label for="register-phone-number">Phone Number: </label>
+                    <input type="tel" id="register-phone-number" placeholder="Enter your Phone Number" />
+                    <button id="register-btn">REGISTER</button>
+                </div>
+            </aside>
+        </main>
+
+        <footer id="footer">
+            <p>Contact Us @<address>info@ferrarideliveries.com | 670337467</address></p>
+            <p>&copy; 2025 Ferrari Car Deliveries</p>
+        </footer>
+    </div>
+</body>
+</html>

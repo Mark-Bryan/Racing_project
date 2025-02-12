@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0" />
+    <title>{% block title%} Ferrari Cars{% endblock %}</title>
+    <link
+      href="{{url_for('static', filename= 'style.css')}}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <img
+          id="logo"
+          src="{{ url_for('static', filename='images/new_logo.PNG') }}"
+          alt="Logo"
+        />
+        <h1>Ferrari Cars</h1>
+        <nav id="horizontal">
+          <p><a href="/">HOME</a></p>
+        </nav>
+      </header>
+
+      <main id="main">{% block content%} {% endblock %}</main>
+      <footer id="footer">
+        <p>&copy; 2025 Ferrari Car Deliveries</p>
+      </footer>
+    </div>
+  </body>
+</html>
