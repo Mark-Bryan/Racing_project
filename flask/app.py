@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json
+from flask import Flask, render_template, request, json, send_from_directory
 import os
 
 app = Flask(__name__)
@@ -75,34 +75,44 @@ def save_listings(listings):
 @app.route("/uploads", methods=["GET", "POST"])
 def upload_listing():
     listings = load_listings()
-    if os.path.exists(listings_file):
-        with open(listings_file, "r") as file:
-            listings = json.load(file)
-
-    else:
-        listings = []
 
     if request.method == "POST":
+        print("request method is post")
         title = request.form.get("title")
         description = request.form.get("description")
         image = request.files.get("cover_image")
 
-        image_path = ""
+        print("Form Data:", title, description, image)
 
-        if image:
-            filepath = os.path.join(app.config["UPLOAD_FOLDER"], image.filename)
+        image_filename = ""
+
+        if image and image.filename:
+            filename = image_filename.replace("", "_")
+            filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+
+            counter = 1
+            base, ext = os.path.splitext(filename)
+            while os.path.exists(filepath):
+                filename = f"{base}_{counter}{ext}"
+                filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+                counter += 1
             image.save(filepath)
-            image_path = filepath
+            image_filename = filename
 
         new_listing = {
             "title": title,
             "description": description,
-            "cover_image": image_path,
+            "cover_image": image_filename,
         }
 
-        listings.append(new_listing)
+        print("Image saved at", filename)
 
-    with open(listings_file, "w") as file:
-        json.dump(listings, file, indent=4)
+        listings.append(new_listing)
+        save_listings(listings)
 
     return render_template("upload_listing.html", listings=listings)
+
+
+@app.route("/uploads/<filename>")
+def uploaded_file(filename):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], filename)

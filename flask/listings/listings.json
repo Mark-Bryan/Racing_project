@@ -1,7 +1,12 @@
 [
     {
-        "cover_image": "",
-        "description": "A fast car used for luxury purposes",
+        "cover_image": "_",
+        "description": "Very fast brilliant car",
         "title": "Ferrari Purosangue"
+    },
+    {
+        "cover_image": "__1",
+        "description": "My dad's car",
+        "title": "Ferrari Competizione"
     }
 ]
