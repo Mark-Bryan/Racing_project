@@ -8,5 +8,30 @@
         "cover_image": "__1",
         "description": "My dad's car",
         "title": "Ferrari Competizione"
+    },
+    {
+        "cover_image": "_1",
+        "description": "My Son's car",
+        "title": "Ferrari La Ferrari"
+    },
+    {
+        "cover_image": "",
+        "description": null,
+        "title": null
+    },
+    {
+        "cover_image": "_2",
+        "description": "My own fav car",
+        "title": "Ferrari La Ferrari"
+    },
+    {
+        "cover_image": "_3",
+        "description": "Suhmayah's car",
+        "title": "Ferrari F8"
+    },
+    {
+        "cover_image": "_4",
+        "description": "Javi's car",
+        "title": "Ferrari Monza SP1"
     }
 ]

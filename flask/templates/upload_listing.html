@@ -23,10 +23,9 @@
         </header>
 
         <main id="main">
+            {% if logged_in %}
             <aside id="content">
                 <h1 class="alert">Showcase Your Business to the World</h1>
-
-                
                 <h2>Upload a New Listing</h2>
                 <form action="/uploads", method="post" enctype="multipart/form-data">
                     <label for="title">Title:</label>
@@ -53,20 +52,34 @@
                             <p>No image available </p>
                             {% endif %}
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+
                 </div>
             </aside>
 
+                <form method="post" action="{{ url_for('logout') }}">
+                    <button type="submit">LOGOUT</button>
+                </form>
+            {% else %}
+
             <aside id="actions">
                 <div id="login-form">
+                    <form method="post" action="/login">
                     <h2>Login</h2>
+                    {% if error %}
+                        <p class="error">{{ error }}</p>
+                    {% endif %}
+                
                     <label for="login-username">Username:</label>
-                    <input type="text" id="login-username" placeholder="Enter your Username">
+                    <input type="text" id="login-username" name="username" placeholder="Enter your Username">
                     <label for="login-password">Password</label>
-                    <input type="password" id="login-password" placeholder="Enter your password">
-                    <button id="login-btn">LOGIN</button>
-                </div>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password">
+                    <button type="submit">LOGIN</button>
+                    </form>
 
+                    
+                </div>
+<!-- 
                 <div id="register-form">
                     <h2>Register</h2>
                     <label for="register-username">Username: </label>
@@ -78,8 +91,9 @@
                     <label for="register-phone-number">Phone Number: </label>
                     <input type="tel" id="register-phone-number" placeholder="Enter your Phone Number" />
                     <button id="register-btn">REGISTER</button>
-                </div>
+                </div> -->
             </aside>
+            {% endif %}
         </main>
 
         <footer id="footer">
